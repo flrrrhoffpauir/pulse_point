@@ -1,0 +1,10 @@
+name = Pulse Points Page
+core = 7.x
+package = Pulse Point Site
+version = 7.x-1.1
+project = pulse_points_page
+dependencies[] = views
+features[ctools][] = views:views_default:3.0
+features[features_api][] = api:2
+features[views_view][] = pulse_points
+features_exclude[dependencies][ctools] = ctools

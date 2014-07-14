@@ -1,0 +1,8 @@
+// random fields
+.field-name-field-short-address {
+	margin: 1em 0 1.5em;
+}
+.field-name-field-phone-number {
+	@extend .p;
+	margin: 0;
+}

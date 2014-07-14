@@ -1,0 +1,148 @@
+@import "mixins";
+
+// generic styles
+.block-bordered {
+	border-top: 1px solid $divider-gray-light;
+	margin: 30px 0;
+}
+
+.block-bottom-border .content {
+	border-bottom: 1px solid $divider-gray-light;
+}
+
+.view-latest-blog-posts-block .columns:nth-child(odd) { clear: left; }
+
+// header logo
+#block-logo-block-logo {
+	position: absolute;
+	left: 1.5%;
+	top: 10px;
+
+	img { width: 200px; }
+
+	@include bp(medium) {
+		position: static;
+		margin: 0 0 15px;
+
+		img {
+			width: 175px;
+		}
+	}
+}
+
+// resources block
+.block-resources {
+	@include bp(small) {
+		.columns:nth-child(odd) { clear: left; }
+	}
+}
+
+// header social menu
+#block-block-2 {
+	float: left;
+	clear: left; // needed for mobile
+
+	@include bp(medium) {
+		width: 100%;
+
+		ul.menu {
+			border-bottom: 1px solid $divider-gray-light;
+			padding-bottom: 1em;
+			text-align: center;
+
+			li {
+				width: 10%;
+			}
+		}
+	}
+}
+
+// header contact us
+#block-block-1 {
+	float: right;
+	text-align: right;
+	@include clearfix();
+
+	@include bp(medium) {
+		width: 100%;
+		text-align: left;
+		padding: 1em 0 1em 10px;
+		font-size: 1.25em;
+
+		a {
+			border-top: 1px solid $divider-gray-light;
+			display: block;
+			margin-left: -0.5em;
+			padding: 1em 0 0 0.5em;
+		}
+	}
+}
+
+#block-block-6 {
+	@include bp(medium) { text-align: center; }
+}
+
+// main menu
+#block-system-main-menu {
+	clear: both;
+
+	.content > .menu {
+		float: right;
+		overflow: visible;
+	}
+}
+
+// share block
+#block-pps-mods-pps-share {} // not needed anymore
+
+// feed burner block
+#block-pps-mods-pps-mod-feedburner {
+	padding-top: 30px;
+	@include adelle-sans;
+
+	a {
+		font-size: .8em;
+	}
+
+	h4 {
+		font-weight: 100;
+	}
+
+	input[type="text"] {
+		font-size: 1em;
+		margin-bottom: 20px;
+	}
+
+	input[type="submit"] {
+		font-size: .8em;
+	}
+}
+
+//
+#block-views-our-people-carousel-block {
+	clear: both;
+	padding: 2em 0;
+}
+
+#block-views-author-header-block {
+	.field-name-field-thumbnail {
+		img {
+			height: 100%;
+			max-height: 232px;
+			max-width: 232px;
+			width: 100%;
+			@include border-radius(50%, 50%, 50%, 50%);
+		}
+	}
+}
+
+// widget
+#block-views-tool-tips-ipad-block,
+#block-views-tool-tips-block-1 { display: none !important; }
+@media screen and (min-width: 768px) {
+	#block-views-tool-tips-block { display: none; } // accordion
+	html.touch #block-views-tool-tips-ipad-block { display: block !important; } // ipad
+	html.no-touch #block-views-tool-tips-block-1,
+	html.no-js #block-views-tool-tips-block-1 { display: block !important; } // desktop by default
+	// desktop or ipad is removed based on touch
+}

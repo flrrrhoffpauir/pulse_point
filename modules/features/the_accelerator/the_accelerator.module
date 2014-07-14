@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the The Accelerator feature.
+ */
+
+include_once 'the_accelerator.features.inc';

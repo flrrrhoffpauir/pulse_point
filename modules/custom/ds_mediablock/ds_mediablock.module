@@ -1,0 +1,33 @@
+<?php
+
+function ds_mediablock_ds_layout_info() {
+	$path = drupal_get_path('module', 'ds_mediablock');
+	$layouts = array();
+
+	$layouts['ds_mediablock'] = array(
+		'label' => t('Media Block Layout'),
+		'path' => $path .'/layouts/mediablock',
+		'regions' => array(
+			'header' => t('Header'),
+			'media' => t('Media'),
+			'media_caption' => t('Media Caption'),
+			'content_header' => t('Content Header'),
+			'content_body' => t('Content Body'),
+			'content_footer' => t('Content Footer'),
+			'footer' => t('Footer'),
+		),
+		'css' => TRUE
+	);
+
+	$layouts['ds_stacked_two'] = array(
+		'label' => t('Two Stacked'),
+		'path' => $path .'/layouts/twostacked',
+		'regions' => array(
+			'top' => t('Thumbnail'),
+			'bottom' => t('Details'),
+		),
+		'css' => TRUE
+	);
+
+	return $layouts;
+}

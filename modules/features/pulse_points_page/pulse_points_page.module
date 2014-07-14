@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Pulse Points Page feature.
+ */
+
+include_once 'pulse_points_page.features.inc';

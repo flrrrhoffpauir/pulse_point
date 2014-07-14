@@ -1,0 +1,77 @@
+@import "variables";
+
+form {
+	max-width: 720px;
+}
+
+input[type="text"], input[type="password"], input[type="email"],
+input[type="url"], input[type="number"],
+textarea {
+	width: 100%;
+	padding: 0.5em 0.75em;
+
+	color: $text-gray-light;
+	border: 1px solid $text-footer-gray;
+	background: white;
+
+	@include adelle-sans;
+
+	&:focus {
+  		outline-color: transparent;
+		outline-style: none;
+	}
+}
+
+input[type="submit"] {
+	@include button;
+}
+
+.contact-form {
+	margin-bottom: 30px;
+}
+
+#mc-embedded-subscribe-form {
+	position: relative;
+
+	input {
+		border: none;
+		float: left;
+		height: 41px;
+		margin-bottom: 20px;
+		width: 100%;
+
+		@include border-radius(50px, 50px, 50px, 50px);
+	}
+
+	input[type="submit"] {
+		// float: left;
+		width: 37px;
+		height: 37px;
+		margin-left: 5px;
+		margin-top: 2px;
+		padding: 0;
+
+		background: $bg-red url("../images/contact-icon-email-white.png") center no-repeat;
+		background-size: 21px 14px;
+		border-radius: 19px;
+		box-shadow: none;
+		color: transparent;
+
+		position: absolute;
+		right: 2px;
+
+		&:hover {
+			background-color: lighten($bg-red, 10%);
+		}
+	}
+}
+
+#edit-field-video-categories-tid-wrapper {
+	label {
+		font-size: 1.25em;
+		font-style: italic;
+		font-weight: 100;
+		margin-bottom: 10px;
+		@include adelle-sans;
+	}
+}

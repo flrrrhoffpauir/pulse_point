@@ -1,0 +1,11 @@
+name = Display Modes
+core = 7.x
+package = Pulse Point Site
+version = 7.x-1.0
+project = display_modes
+dependencies[] = ctools
+dependencies[] = ds
+features[ctools][] = ds:ds:1
+features[ds_view_modes][] = home_page_teaser
+features[ds_view_modes][] = sidebar_teaser
+features[features_api][] = api:2

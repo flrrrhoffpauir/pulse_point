@@ -1,0 +1,5 @@
+.view-video-library {
+	.views-row { margin-bottom: 1em; }
+	.views-row:nth-child(odd) { clear: left; }
+	.views-row:last-child { float: left; }
+}

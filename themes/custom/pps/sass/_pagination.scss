@@ -1,0 +1,56 @@
+@import "variables";
+@import "mixins";
+
+.item-list .pager { // thanks drupal
+	font-size: 1em;
+	@include clearfix();
+
+	.row .row & { margin: 0 0.9275em; } //
+
+	.pager-current,
+	.pager-ellipsis,
+	.pager-first,
+	.pager-last { display: none; }
+
+	.pager-previous {
+		float: left;
+		position: relative;
+		margin: 0;
+		padding-left: 30px;
+		background: url(../images/carousel-arrow-left.png) left no-repeat;
+		background-size: 14px 28px;
+		@include transition(all, .2s, ease-out, 0);
+
+		&:hover {
+			// padding-left: 35px;
+			// left: -5px;
+		}
+	}
+	.pager-next {
+		float: right;
+		position: relative;
+		margin: 0;
+		padding-right: 30px;
+		background: url(../images/carousel-arrow-right.png) right no-repeat;
+		background-size: 14px 28px;
+		@include transition(all, .2s, ease-out, 0);
+
+		&:hover {
+			// padding-right: 35px;
+			// right: -5px;
+		}
+	}
+
+	li {
+		font-size: 1.5em;
+		font-style: italic;
+		font-weight: 100;
+		line-height: 1.25em;
+		margin-bottom: 0.5em;
+		font-family: adelle-sans, sans, sans-serif;
+	}
+
+	&:nth-child(2) {
+		margin: 0;
+	}
+}

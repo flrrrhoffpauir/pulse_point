@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Segments View feature.
+ */
+
+include_once 'pps_segments_view.features.inc';

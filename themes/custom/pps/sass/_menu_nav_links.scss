@@ -1,0 +1,11 @@
+@import "variables";
+@import "mixins";
+
+.MenuNavLinks-item {
+	color: $text-gray;
+	font-size: 2em;
+	font-style: italic;
+	line-height: 1.4em;
+	font-weight: 100;
+	@include adelle-sans();	
+}

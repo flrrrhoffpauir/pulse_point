@@ -1,0 +1,3 @@
+### Caching
+
+Caching is the process of storing calculated information to prevent the cost of redoing that work repeatedly. Drupal uses a page cache so that if the content of a page has not been updated, the system does not need to recalculate everything for every user. This usually does not cause any issues however, if you would like to manually clear Drupal's cache, you can do so by hovering over the house admin menu icon, moving to "Flush all Caches", then selecting "Page and else". The site will reload and when it comes back up, the page will be recreated from scratch.

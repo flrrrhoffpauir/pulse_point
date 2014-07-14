@@ -1,0 +1,9 @@
+name = "PPS Migrations"
+package = Pulse Point Site
+core = 7.x
+dependencies[] = migrate
+
+files[] = pps_migrations.module
+files[] = pps_migrations.migrate.inc
+files[] = user.inc
+files[] = post.inc

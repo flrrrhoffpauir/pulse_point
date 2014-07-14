@@ -1,0 +1,6 @@
+name = Display Suite MediaBlock Layout
+description = Mediablock style layouts for DisplaySuite
+package = Display Suite
+core = 7.x
+
+dependencies[] = ds

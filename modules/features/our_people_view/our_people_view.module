@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Our People View feature.
+ */
+
+include_once 'our_people_view.features.inc';

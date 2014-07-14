@@ -1,0 +1,3 @@
+### Menus
+
+The menus of the website are managed by going to the main admin and selecting "Structure", then "Menus". The "Menus" page list out all the menus on the site. The menu you most often will be working in is the "Main menu". Clicking "list links" will show all the menu items in the menu. The "list links" page allows you to reorder, edit and add menu items. The move handle allows you to move a menu up and down, and left and right. Moving a menu left and right changes the menu item to be a child menu item. By default child menu items are only shown if you are on the parent page, or a page which is a sibling to the selected page. The "Enabled" check box allows you to disable a menu item without removing it. This allows you to temporarily hide a menu.

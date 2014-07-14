@@ -1,0 +1,16 @@
+.ds-mediablock {
+	margin-bottom: 1em;
+}
+
+.ds-mediablock-body {
+	overflow: hidden;
+}
+
+.ds-mediablock-mediaContainer {
+	float: left;
+	margin-right: 1em;
+}
+
+.ds-mediablock-contentContainer {
+	overflow: hidden;
+}

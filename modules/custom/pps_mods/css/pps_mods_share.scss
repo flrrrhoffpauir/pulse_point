@@ -1,0 +1,86 @@
+
+.ppsShare {
+	margin: 30px 0;
+}
+
+.ppsShare-toggle {
+	position: relative;
+	z-index: 2;
+	float: right;
+	background: white;
+	padding: 0.25em;
+	text-transform: uppercase;
+	cursor: pointer;
+
+	font-family: adelle-sans, sans, sans-serif;
+	font-size: 0.875em;
+	font-weight: 700;
+
+	img { padding: 0 0.5em; }
+}
+
+.ppsShare-text {
+	display: inline-block;
+}
+
+.ppsShare-item {
+	margin: 0.5em 0;
+}
+
+.ppsShare--collapsible {
+	position: relative;
+	float: right;
+	margin: 0;
+	width: 90px;
+	overflow: hidden;
+
+	-webkit-transition: width 0.2s cubic-bezier(0.830, 0.205, 0.405, 1);
+	   -moz-transition: width 0.2s cubic-bezier(0.830, 0.205, 0.405, 1);
+	    -ms-transition: width 0.2s cubic-bezier(0.830, 0.205, 0.405, 1);
+	     -o-transition: width 0.2s cubic-bezier(0.830, 0.205, 0.405, 1);
+	        transition: width 0.2s cubic-bezier(0.830, 0.205, 0.405, 1); /* custom */
+
+	.ppsShare-item {
+		position: absolute;
+		top: 5px;
+		right: 0; /* hide */
+		z-index: 1;
+		margin: 0;
+		width: 74px;
+		overflow: hidden;
+
+		-webkit-transition: right 0.2s cubic-bezier(0.830, 0.205, 0.405, 1); /* older webkit */
+		-webkit-transition: right 0.2s cubic-bezier(0.830, 0.205, 0.405, 1.580);
+		   -moz-transition: right 0.2s cubic-bezier(0.830, 0.205, 0.405, 1.580);
+		    -ms-transition: right 0.2s cubic-bezier(0.830, 0.205, 0.405, 1.580);
+		     -o-transition: right 0.2s cubic-bezier(0.830, 0.205, 0.405, 1.580);
+		        transition: right 0.2s cubic-bezier(0.830, 0.205, 0.405, 1.580); /* custom */
+	}
+
+	.ppsShare-facebook {
+		// transition-delay: 0;
+	}
+	.ppsShare-twitter  {
+		-webkit-transition-delay: 0.05s;
+		-moz-transition-delay: 0.05s;
+		-ms-transition-delay: 0.05s;
+		-o-transition-delay: 0.05s;
+		transition-delay: 0.05s;
+		width: 84px;
+	}
+	.ppsShare-linkedin {
+		-webkit-transition-delay: 0.1s;
+		-moz-transition-delay: 0.1s;
+		-ms-transition-delay: 0.1s;
+		-o-transition-delay: 0.1s;
+		transition-delay: 0.1s;
+	}
+
+	&:hover, &.hover {
+		width: 309px;
+
+		.ppsShare-facebook { right: 231px; }
+		.ppsShare-twitter { right: 142px; }
+		.ppsShare-linkedin { right: 71px; }
+	}
+}

@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Video Library feature.
+ */
+
+include_once 'video_library.features.inc';

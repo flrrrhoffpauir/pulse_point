@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Sub Services View feature.
+ */
+
+include_once 'sub_services_view.features.inc';

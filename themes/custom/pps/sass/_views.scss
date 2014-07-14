@@ -1,0 +1,152 @@
+@import "variables";
+@import "mixins";
+
+.view-filters {
+	padding: 0.9375em; // matches row
+	padding-top: 0
+}
+
+.view-tool-tips.view-display-id-block_1,
+.view-tool-tips-ipad.view-display-id-block {
+	margin-top: 30px;
+	@include clearfix();
+
+	.views-row {
+		position: relative;
+
+		&:nth-child(3n-2) { clear: left; }
+	}
+
+	.tt-title {
+		background-image: url(../images/grey-gradient-background.jpg);
+		background-size: cover;
+		color: white;
+		font-size: 1.75em;
+		font-style: italic;
+		font-weight: 700;
+		margin-bottom: 30px;
+		padding: 3em 0;
+		text-align: center;
+		cursor: pointer;
+		
+		@include transition(color, 0.2s, ease-out, 0);
+
+		h1 {
+			font-size: 1em;
+			font-style: italic;
+			font-weight: 700;
+		}
+
+		&:hover {
+			h1 {
+				color: $link-red;
+				@include transition(color, 0.2s, ease-out, 0);
+			}
+		}
+
+		&:active {
+			color: $link-red;
+			@include transition(color, 0.2s, ease-out, 0);
+		}
+	}
+
+	.tt-body {
+		background: $bg-teal;
+		box-shadow: 0 0 1em #333333;
+		color: white;
+		display: none;
+		padding: 30px;
+		pointer-events: none;
+		z-index: 100;
+
+		&:after {
+			content: ' ';
+			display: block;
+			position: absolute;
+			top: 100%;
+
+			@include arrow($bg-green, 20px, down);
+		}
+
+		h1 {
+			font-style: italic;
+			font-weight: 100;
+			margin-bottom: 5px;
+			@include adelle-sans;
+		}
+
+		p {
+			margin-bottom: 0;
+		}
+	}
+
+	.views-row {
+		&:hover {
+			.tt-body {
+				display: block;
+			}
+		}
+
+		&:nth-child(-n+3) .tt-body,
+		&:nth-child(-n+3).tt-body {
+			&:after {
+				top: auto;
+				bottom: 100%;
+				@include arrow($bg-green, 20px, up);
+			}
+		}
+
+		&:nth-child(3n-2) .tt-body,
+		&:nth-child(3n-2).tt-body {
+			&:after { left: 10.5%; }
+		}
+		&:nth-child(3n-1) .tt-body,
+		&:nth-child(3n-1).tt-body {
+			&:after { left: 47%; }
+		}
+		&:nth-child(3n-0) .tt-body,
+		&:nth-child(3n-0).tt-body {
+			&:after { left: 84%; }
+		}
+
+	}
+}
+
+
+.view-tool-tips--inline {
+	.tt-body {
+		position: relative;
+		margin: -4em 1.875em -3em;
+		width: -webkit-calc(100% - 3.75em);
+		width: -mox-calc(100% - 3.75em);
+		width: calc(100% - 3.75em);
+	}
+}
+
+.view-tool-tips--hover {
+	.tt-body {
+		bottom: 76%;
+		position: absolute;
+		width: 274%;
+	}
+
+	.views-row {
+		&:nth-child(-n+3) .tt-body {
+			bottom: auto;
+			top: 60%;
+		}
+
+		&:nth-child(3n-2) .tt-body {
+			left: 13%;
+		}
+
+		&:nth-child(3n-1) .tt-body {
+			left: -87%;
+		}
+
+		&:nth-child(3n-0) .tt-body {
+			left: -187%;
+		}
+	}
+}
+

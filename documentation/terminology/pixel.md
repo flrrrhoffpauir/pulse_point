@@ -1,0 +1,1 @@
+**Pixel:** A pixel is (typically) a single colour dot on a screen. Most image editing programs use pixels a metric for measuring the size of an image.

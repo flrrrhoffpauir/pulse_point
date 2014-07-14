@@ -1,0 +1,5 @@
+<?php
+
+function author_content_type_update_7000() {
+	db_query("UPDATE {node_type} SET `custom` = 1, `locked` = 0 WHERE `type` = :ctype", array(':ctype' => 'author'));
+}

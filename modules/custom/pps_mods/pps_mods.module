@@ -1,0 +1,521 @@
+<?php
+
+define('PPS_MOD_SHARE_BLOCK', 'pps_share');
+define('PPS_MOD_SHARE_BLOCK_2', 'pps_mods_share_block_2');
+define('PPS_MOD_FEEDBURNER', 'pps_mod_feedburner');
+define('PPS_MODS_MAILCHIMP', 'pps_mods_mailchimp');
+define('PPS_MODS_READ_NEXT', 'pps_mods_read_next');
+define('PPS_MODS_PPG_USER', 58);
+
+function pps_mods_menu() {
+	$items['admin/documentation'] = array(
+		'title' => t('Documentation'),
+		'page callback' => 'pps_mods_documentation_redirect',
+		'access callback' => true,
+	);
+
+	return $items;
+}
+
+function pps_mods_documentation_redirect() {
+	drupal_goto('/sites/all/documentation/index.html', array(
+		'external' => true,
+		'attributes' => array('target' => '_blank'),
+	));
+}
+
+function pps_mods_block_info() {
+	$blocks = array();
+
+	$blocks['pps_share'] = array(
+		'info' => t('Share Block')
+	);
+	$blocks[PPS_MOD_SHARE_BLOCK_2] = array(
+		'info' => t('Share Block 2')
+	);
+	$blocks['pps_menu_paging'] = array(
+		'info' => t('Menu Paged Navigation Links'),
+	);
+	$blocks[PPS_MOD_FEEDBURNER] = array(
+		'info' => t('Feedburner'),
+	);
+	$blocks[PPS_MODS_MAILCHIMP] = array(
+		'info' => t('Mailchimp Signup'),
+	);
+	$blocks[PPS_MODS_READ_NEXT] = array(
+		'info' => t('Read Next'),
+	);
+
+
+	return $blocks;
+}
+
+function pps_mods_block_view($delta) {
+	$block = array();
+
+	switch ($delta) {
+		case 'pps_share':
+			$block['content'] = pps_mods_share_block();
+			break;
+		case PPS_MOD_SHARE_BLOCK_2:
+			$block['content'] = pps_mods_share_block2();
+			break;
+		case 'pps_menu_paging':
+			$block['content'] = pps_mods_menu_paging();
+			break;
+		case PPS_MOD_FEEDBURNER:
+			$block['content'] = pps_mods_feedburner();
+			break;
+		case PPS_MODS_MAILCHIMP:
+			$block['content'] = pps_mods_mailchimp();
+			break;
+		case PPS_MODS_READ_NEXT:
+			$block['content'] = pps_mods_read_next_block();
+	}
+
+	return $block;
+}
+
+function pps_mods_share_block() {
+	$path = drupal_get_path('module', 'pps_mods');
+	drupal_add_css($path .'/css/pps_mods_share.css');
+	drupal_add_js($path .'/js/pps_mods_share.js');
+	$url = $GLOBALS['base_url'] .'/'. request_path();
+
+	$content = '';
+	$content .= '<div class="ppsShare ppsShare--collapsible">';
+		$content .= '<div class="ppsShare-toggle">';
+			$content .= "<img src=\"/$path/images/share.png\" width=\"32\" height=\"35\" />";
+			$content .= '<div class="ppsShare-text">share</div>';
+		$content .= "</div>";
+
+		$content .= "<div>";
+			$content .= _pps_mods_share_facebook_link($url);
+			$content .= _pps_mods_share_twitter_link();
+			$content .= _pps_mods_share_linkedin_link();
+		$content .= "</div>";
+	$content .= "</div>";
+
+	return $content;
+}
+
+function pps_mods_share_block2() {
+	$path = drupal_get_path('module', 'pps_mods');
+	drupal_add_css($path .'/css/pps_mods_share.css');
+	$url = $GLOBALS['base_url'] .'/'. request_path();
+
+	$content = '';
+	$content .= '<div class="ppsShare">';
+		$content .= "<div>";
+			$content .= _pps_mods_share_facebook_link($url);
+			$content .= _pps_mods_share_twitter_link();
+			$content .= _pps_mods_share_linkedin_link();
+		$content .= "</div>";
+	$content .= "</div>";
+
+	return $content;
+}
+
+function _pps_mods_share_facebook_link($url) {
+	$params = array(
+		'width' => 74,
+		'height' => 21,
+		'colorscheme' => 'light',
+		'layout' => 'button_count',
+		'action' => 'like',
+		'show_faces' => 'true',
+		'send' => 'false',
+		'appId' => '1418195198393564',
+		'href' => $url
+	);
+
+	$link = 'http://www.facebook.com/plugins/like.php?' . http_build_query($params);
+
+	return <<<EOT
+<div class="ppsShare-item ppsShare-facebook">
+	<iframe
+		src="$link"
+		width="{$params['width']}"
+		height="{$params['height']}"
+		scrolling="no"
+		frameborder="0"
+		style="border-none;overflow:hidden;""
+		allowTransparency="true" >
+	</iframe>
+</div>
+EOT;
+}
+
+function _pps_mods_share_twitter_link() {
+	return <<<EOT
+<div class="ppsShare-item ppsShare-twitter">
+	<a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location) ? 'http' : 'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+</div>
+EOT;
+}
+
+function _pps_mods_share_linkedin_link() {
+	return <<<EOT
+<div class="ppsShare-item ppsShare-linkedin">
+	<script src="//platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+	<script type="IN/Share" data-counter="right"></script>
+</div>
+EOT;
+}
+
+
+function pps_mods_menu_paging() {
+	// get current menu item
+	// get parent menu item
+	// get children of parent
+	// get next/prev sibling
+	// make links if available
+
+	$tree = menu_tree_all_data('main-menu');
+	$menus = array();
+	foreach($tree as $menu) {
+		if ($menu['link']['mlid'] == 581) { // hard coded
+			$menus = $menu['below'];
+		}
+	}
+
+	$current_path = current_path();
+	$current_menu = null;
+
+	$menu_index = false;
+	$previous = null;
+	$next = null;
+	foreach ($menus as $child) {
+		if ($menu_index !== false) {
+			$next = $child;
+			break; // previous and current already found.
+		}
+
+		if ($child['link']['link_path'] == $current_path) {
+			$menu_index = $child;
+		}
+
+		if ($menu_index === false) {
+			$previous = $child;
+		}
+	}
+
+	// current was never found so previous shouldn't be set
+	if ($menu_index === false) {
+		$previous = null;
+	}
+
+	$content = array();
+	if ($previous) {
+		$content['previous'] = array(
+			'#type' => 'markup',
+			'#markup' => t('Previous: <a href="@url">@title</a>', array(
+				'@url' => url($previous['link']['link_path']),
+				'@title' => $previous['link']['link_title'],
+			)),
+			'#prefix' => '<div class="MenuNavLinks-item MenuNavLinks-previous">',
+			'#suffix' => '</div>',
+		);
+	}
+
+	if ($next) {
+		$content['next'] = array(
+			'#type' => 'markup',
+			'#markup' => t('Next: <a href="@url">@title</a>', array(
+				'@url' => url($next['link']['link_path']),
+				'@title' => $next['link']['link_title'],
+			)),
+			'#prefix' => '<div class="MenuNavLinks-item MenuNavLinks-next">',
+			'#suffix' => '</div>',
+		);
+	}
+
+	return $content;
+}
+
+function pps_mods_mailchimp() {
+	$action = "http://pulsepointgroup.us4.list-manage1.com/subscribe/post?u=8ff78a640a431faa1edb42e06&amp;id=2d070bf670";
+	$message = "Register for email updates";
+	return <<<HTML
+<!-- Begin MailChimp Signup Form -->
+<div id="mc_embed_signup">
+	<form action="$action" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+
+	<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="$message" required>
+	<input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button">
+</form>
+</div>
+<!--End mc_embed_signup-->
+HTML;
+}
+
+function pps_mods_read_next_block() {
+	$node = menu_get_object();
+	$blog_nids = array();
+
+	$query = new EntityFieldQuery();
+	$query->entityCondition('entity_type', 'node')
+		->entityCondition('bundle', 'blog')
+		->propertyCondition('status', 1)
+		->propertyCondition('created', $node->created, '>')
+		->fieldCondition('field_pulse_point', 'value', 0)
+		->fieldCondition('field_accelerator', 'value', 0)
+		//->propertyOrderBy('created', 'ASC')
+		->range(0, 1);
+	$result = $query->execute();
+	if (isset($result['node'])) {
+		$blog_nids = array_keys($result['node']);
+	}
+
+	$query = new EntityFieldQuery();
+	$query->entityCondition('entity_type', 'node')
+		->entityCondition('bundle', 'blog')
+		->propertyCondition('status', 1)
+		->propertyCondition('created', $node->created, '<')
+		->fieldCondition('field_pulse_point', 'value', 0)
+		->fieldCondition('field_accelerator', 'value', 0)
+		->propertyOrderBy('created', 'DESC')
+		->range(0, 2);
+	$result = $query->execute();
+	if (isset($result['node'])) {
+		$blog_nids = array_merge($blog_nids, array_keys($result['node']));
+	}
+
+	$blogs = node_load_multiple($blog_nids);
+
+	$content = '';
+
+	foreach($blogs as $blog) {
+		$user = user_load($blog->uid);
+		$node_uri = entity_uri('node', $blog);
+		$user_uri = entity_uri('user', $user);
+		$username = _pps_mods_user_fullname($user);
+		$content .= '<div class="list-item">';
+			$content .= '<div class="related-title">';
+				$content .= l($blog->title, $node_uri['path']);
+			$content .= '</div>';
+			$content .= '<div class="related-author">';
+				$content .= 'By ';
+				$content .= ($user->uid == PPS_MODS_PPG_USER) ? "<span>$username</span>" : l($username, $user_uri['path']);
+			$content .= '</div>';
+		$content .= '</div>';
+	}
+
+	return $content;
+}
+
+function pps_mods_ds_fields_info($entity_type) {
+	$node_fields = array();
+
+	$node_fields['logo_link'] = array(
+		'title' => t('Logo Link'),
+		'field_type' => DS_FIELD_TYPE_FUNCTION,
+		'ui_limit' => array('client|*'),
+		'function' => 'pps_mod_logo_link_field',
+	);
+
+	$node_fields['title_first_word'] = array(
+		'title' => t('Title First Word'),
+		'field_type' => DS_FIELD_TYPE_FUNCTION,
+		'ui_limit' => array('*|*'),
+		'function' => 'pps_mod_title_first_word',
+	);
+
+	$node_fields['author_thumbnail'] = array(
+		'title' => t('Author Thumbnail'),
+		'field_type' => DS_FIELD_TYPE_FUNCTION,
+		'ui_limit' => array('*|*'),
+		'function' => 'pps_mod_author_thumbnail',
+	);
+
+	$node_fields['author_fullname_link'] = array(
+		'title' => t('Author Fullname Link'),
+		'field_type' => DS_FIELD_TYPE_FUNCTION,
+		'ui_limit' => array('*|*'),
+		'function' => 'pps_mod_author_fullname_link',
+	);
+
+	$user_fields = array();
+	$user_fields['fullname_link'] = array(
+		'title' => t('Fullname Field Link'),
+		'field_type' => DS_FIELD_TYPE_FUNCTION,
+		'ui_limit' => array('*|*'),
+		'function' => 'pps_mod_fullname_link',
+	);
+	$user_fields['fullname'] = array(
+		'title' => t('Fullname Field'),
+		'field_type' => DS_FIELD_TYPE_FUNCTION,
+		'ui_limit' => array('*|*'),
+		'function' => 'pps_mod_fullname',
+	);
+
+	return array(
+		'node' => $node_fields,
+		'user' => $user_fields,
+	);
+}
+
+function pps_mod_logo_link_field($field) {
+	$title = $field['entity']->title;
+	$logos = field_get_items('node', $field['entity'], 'field_logo');
+	$links = field_get_items('node', $field['entity'], 'field_url');
+
+	if (count($logos)) {
+		$logo = $logos[0];
+		$image_url = image_style_url('client_thumbnail', $logo['uri']);
+	}
+	if (count($links)) {
+		$link = $links[0];
+		$link_path = $link['url'];
+	}
+
+	$output = '';
+
+	if ($link) {
+		$output .= "<a href=\"$link_path\" target=\"_blank\">";
+	}
+
+	if ($logo) {
+		$output .= "<img src=\"$image_url\" alt=\"$title\" title=\"$title\" />";
+	}
+
+	if ($link) {
+		$output .= "</a>";
+	}
+
+	return $output;
+}
+
+function pps_mods_feedburner() {
+	return <<<HTML
+<form action="http://feedburner.google.com/fb/a/mailverify" method="post" onsubmit="window.open('http://feedburner.google.com/fb/a/mailverify?uri=pulsepoint', 'popupwindow', 'scrollbars=yes,width=550,height=520');return true" target="popupwindow">
+	<p><span style="line-height: 20px">
+		<a href="http://add.my.yahoo.com/rss?url=http://feeds2.feedburner.com/pulsepoint" onclick="this.href = subscribeNow(this.href,'My Yahoo!');return true"><img alt="addtomyyahoo4" border="0" height="17" src="http://us.i1.yimg.com/us.yimg.com/i/us/my/addtomyyahoo4.gif" vspace="3" width="91" /> </a><br />
+		<!-- <a class="img" href="http://www.newsgator.com/ngs/subscriber/subext.aspx?url=http://feeds2.feedburner.com/pulsepoint" onclick="subscribeNow(this.href,'NewsGator Online');return true"><img alt="Subscribe in NewsGator Online" border="0" src="http://www.newsgator.com/images/ngsub1.gif" vspace="3" /></a><br /> -->
+		<!-- <a href="http://feeds.my.aol.com/add.jsp?url=http://feeds2.feedburner.com/pulsepoint" onclick="this.href=subscribeNow(this.href,'My AOL');return true"><img alt="Add to My AOL" border="0" src="http://o.aolcdn.com/myfeeds/html/vis/myaol_cta1.gif" vspace="3" /></a><br /> -->
+		<a class="img" href="http://www.bloglines.com/sub/http://feeds2.feedburner.com/pulsepoint" onclick="this.href=subscribeNow(this.href,'Bloglines');return true"><img alt="Subscribe with Bloglines" border="0" src="http://www.bloglines.com/images/sub_modern5.gif" vspace="3" /></a><br />
+		<a href="http://www.netvibes.com/subscribe.php?url=http://feeds2.feedburner.com/pulsepoint" onclick="this.href=subscribeNow(this.href,'Netvibes');return true"><img alt="Add to netvibes" border="0" src="http://www.netvibes.com/img/add2netvibes.gif" vspace="3" /></a><br />
+		<a href="http://fusion.google.com/add?feedurl=http://feeds2.feedburner.com/pulsepoint" onclick="this.href=subscribeNow(this.href,'Google');return true"><img alt="Add to Google" border="0" height="17" src="http://buttons.googlesyndication.com/fusion/add.gif" vspace="3" width="104" /></a><br />
+		<!-- <a href="http://www.pageflakes.com/subscribe.aspx?url=http://feeds2.feedburner.com/pulsepoint" onclick="this.href=subscribeNow(this.href,'Pageflakes');return true"><img src="http://www.pageflakes.com/subscribe2.gif" vspace="3" border="0"></a><br />-->
+		<a href="http://feeds2.feedburner.com/pulsepoint?format=xml"><img alt="original feed" border="0" src="http://feedburner.google.com/fb/lib/images/icons/feed-icon-12x12-orange.gif" /></a>
+		<a href="http://feeds2.feedburner.com/pulsepoint?format=xml">View Feed XML</a>
+	</span></p>
+
+	<div class="text-center">&mdash; or &mdash;</div>
+
+	<h4>Subscribe by Email</h4>
+
+	<div>
+		<input name="email" type="text" />
+		<input name="uri" type="hidden" value="pulsepoint" />
+		<input name="loc" type="hidden" value="en_US" />
+		<p><input type="submit" value="Send" /></p>
+	</div>
+</form>
+
+HTML;
+}
+
+function pps_mod_title_first_word($field) {
+	$title = $field['entity']->title;
+	$pos = strpos(' ', $title);
+	if($pos !== false)
+		return substr($title, 0, $pos);
+	else
+		return $title;
+}
+
+function pps_mod_author_thumbnail($field) {
+	$author = user_load($field['entity']->uid);
+	$thumbnails = field_get_items('user', $author, 'field_thumbnail') ?: array();
+
+	$content = '';
+	foreach($thumbnails as $thumbnail) {
+		$image = theme('image_style', array(
+			'style_name' => 'author_thumbnail',
+			'path' => $thumbnail['uri'],
+		));
+
+		if ($author->uid == PPS_MODS_PPG_USER) {
+			$content .= $image;
+		} else {
+			$content .= l($image, "user/$author->uid", array(
+				'html' => TRUE,
+			));
+		}
+	}
+	return $content;
+}
+
+function pps_mod_author_fullname_link($field) {
+	$user = user_load($field['entity']->uid);
+	$uri = entity_uri('user', $user);
+	$fullname = _pps_mods_user_fullname($user);
+
+	if ($user->uid == PPS_MODS_PPG_USER) {
+		return $fullname;
+	} else {
+		return l($fullname, $uri['path']);
+	}
+}
+
+function pps_mod_fullname_link($field) {
+	$user = $field['entity'];
+	$uri = entity_uri('user', $user);
+	$fullname = _pps_mods_user_fullname($user);
+
+	if ($user->uid == PPS_MODS_PPG_USER) {
+		return $fullname;
+	} else {
+		return l($fullname, $uri['path']);
+	}
+}
+
+function pps_mod_fullname($field) {
+	return _pps_mods_user_fullname($field['entity']);
+}
+
+function _pps_mods_user_fullname($user) {
+	$firstnames = field_get_items('user', $user, 'field_first_name');
+	$lastnames = field_get_items('user', $user, 'field_last_name');
+	return implode(' ', array_filter(array(
+		$firstnames[0]['value'],
+		$lastnames[0]['value']
+	)));
+}
+
+function pps_mods_form_alter(&$form, &$form_state, $form_id) {
+	if (substr($form_id, -9) == 'node_form') {
+		$options = array();
+		$results = db_query('select uid, name from users where uid >= 1;');
+		foreach ($results as $result) {
+			$options[$result->name] = $result->name;
+		}
+
+		// includes and overrides other summary handlers. added to options becuase of priority
+		$form['author']['#attached']['js'][] = drupal_get_path('module', 'pps_mods') . '/js/node.js';
+		$form['options']['#attached']['js'][] = drupal_get_path('module', 'pps_mods') . '/js/node.js';
+		$form['author']['name'] = array(
+			'#type' => 'select',
+			'#title' => $form['author']['name']['#title'],
+			'#default_value' => $form['author']['name']['#default_value'],
+			'#weight' => $form['author']['name']['#weight'],
+			'#description' => $form['author']['name']['#description'],
+			'#options' => $options,
+		);
+	}
+}
+
+/**
+ * @implements hook_training_resources
+ */
+function pps_mods_training_resources(&$vars) {
+	$vars['contact'] = 'Junie Threatt';
+	$vars['email'] = 'junie@smithandrobot.com';
+	$vars['phone'] = '(512) 696-0418';
+	$vars['message'] = 'Welcome message';
+	$vars['videos'][] = array('title' => 'How do I add and setup a blog post?', 'link' => 'https://www.youtube.com/watch?v=_grJEUkvI88');
+	$vars['videos'][] = array('title' => '**How do I add a new person...', 'link' => '#');
+	$vars['videos'][] = array('title' => '**How do I do other stuff...', 'link' => '#');
+}

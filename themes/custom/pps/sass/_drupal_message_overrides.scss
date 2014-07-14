@@ -1,0 +1,32 @@
+$backgroundImage: '/sites/all/themes/custom/pps/images/lines.png';
+$messgPadding: 30px;
+input, textarea {
+	&.error {
+		border:1px solid red !important;
+	}
+}
+
+.messages {
+	&.error {
+		border:none;
+		background-image: url($backgroundImage);
+		background-repeat: repeat;
+		margin:0;
+		padding:$messgPadding;
+	}
+}
+
+div {
+	&.status {
+		border:none;
+		background-image: url($backgroundImage);
+		background-color: transparent;
+		background-repeat: repeat;
+		margin:0;
+		padding:$messgPadding;
+
+		p {
+			margin:0;
+		}
+	}
+}

@@ -1,0 +1,5 @@
+.region-footer-left {
+	@include bp(medium) {
+		margin-bottom: 30px;
+	}
+}

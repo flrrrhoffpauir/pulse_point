@@ -1,0 +1,11 @@
+# behat.yml
+default:
+    context:
+        parameters:
+            base_url: <your local dev env e.g. http://localhost:6464>
+    extensions:
+        Behat\MinkExtension\Extension:
+            base_url: <same as base_url_above>
+            goutte: ~
+            selenium2: ~
+            show_cmd: 'open -a Google\ Chrome %s'

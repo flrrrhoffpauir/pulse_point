@@ -1,0 +1,288 @@
+@import "variables";
+@import "mixins";
+
+// OUR PEOPLE
+// ----------------------------------------------
+
+.t-people__person {
+
+	a {
+		color: white;
+		font-size: 1em;
+		font-style: italic;
+		font-weight: 700;
+
+		&:hover {
+			color: $link-red;
+		}
+	}
+
+	img {
+		display: block;
+		// height: 158px;
+		// width: 149px;
+		height: 100%;
+		width: 100%;
+	}
+
+	span {
+		color: $text-gray-light;
+		display: block;
+		font-size: 0.875em;
+		font-weight: 100;
+		margin-top: 5px;
+		@include adelle-sans;
+	}
+
+	.details {
+		background-color: $bg-gray;
+		padding: 10px;
+		width: 100%;
+	}
+}
+
+.view-our-people {
+
+	.columns {
+		margin-bottom: 0.9375em * 2; // match foundation column spacing
+
+
+		&.views-row-last  {
+			float: left;
+		}
+
+		&:nth-child(4n-3) { clear: left; }
+
+		@media screen and (max-width: 480px) {
+			padding: 0;
+			&:nth-child(odd) { clear: left; }
+		}
+	}
+
+
+	.field-name-field-quote,
+	.field-name-field-fullname {
+		position: absolute;
+		left: 50%;
+		top: 0;
+		width: 146px; // matches image
+		height: 150px;
+		margin-left: -73px; // half width
+		padding: 2em 1.5em;
+
+		border-radius: 50%;
+		color: white;
+		font-size: 0.8em;
+		font-style: italic;
+		font-weight: 100;
+		line-height: 1.1em;
+		opacity: 0;
+		pointer-events: none;
+		text-align: center;
+		z-index: 5;
+
+		@include adelle-sans;
+		@include transition(opacity, 0.2s, ease-out, 0);
+
+		.field-items {
+			display: table;
+			height: 100%;
+			width: 100%;
+		}
+
+		.field-item {
+			display: table-cell;
+			vertical-align: middle;
+			width: 100%;
+		}
+	}
+
+
+	.views-row:hover .field-name-field-quote,
+	.views-row:hover .field-name-field-fullname { opacity: 1; }
+
+	.field-name-field-thumbnail {
+		text-align: center;
+
+		.field-item {
+			position: relative;
+			display: inline-block;
+			overflow: hidden;
+			width: 148px;
+			padding: 1px 1px 10px 1px;
+
+			&:after,
+			&::after {
+				background-image: url(/sites/all/themes/custom/pps/images/speech_balloon.png);
+				background-repeat: no-repeat;
+				background-size: 147px 155px;
+				bottom: 0;
+				content: ' ';
+				left: 1px;
+				opacity: 0;
+				padding: 1.5em;
+				pointer-events: none;
+				position: absolute;
+				right: 0;
+				top: 0;
+
+				@include transition(opacity, 0.2s, ease-out, 0);
+			}
+		}
+
+		img {
+			width: 148px;
+			height: auto;
+			border-radius: 50%;
+		}
+	}
+
+	.views-row:hover .field-name-field-thumbnail .field-item:after { opacity: 1; }
+
+	.field-name-fullname-link {
+		color: $text-blue;
+		font-size: 1.2em;
+		font-style: italic;
+		font-weight: 700;
+		text-align: center;
+		@include adelle;
+	}
+
+	.field-name-field-job-title {
+		color: $text-gray-light;
+		font-size: 0.8em;
+		font-weight: 400;
+		margin-top: 5px;
+		text-align: center;
+		@include adelle-sans;
+	}
+}
+
+
+// carousel
+.view-our-people-carousel {
+	.views-row {
+		position: relative;
+		padding: 0 0.46875em;
+		float: left;
+	}
+
+	.field-name-field-quote {
+		position: absolute;
+		left: 50%;
+		top: 0;
+		width: 146px; // matches image
+		height: 150px;
+		margin-left: -73px; // half width
+		padding: 2em 1.5em;
+
+		border-radius: 50%;
+		color: white;
+		font-size: 0.8em;
+		font-style: italic;
+		font-weight: 100;
+		line-height: 1.1em;
+		opacity: 0;
+		pointer-events: none;
+		text-align: center;
+		z-index: 5;
+
+		@include adelle-sans;
+		@include transition(opacity, 0.2s, ease-out, 0);
+
+		.field-items {
+			display: table;
+			height: 100%;
+			width: 100%;
+		}
+
+		.field-item {
+			display: table-cell;
+			vertical-align: middle;
+			width: 100%;
+		}
+	}
+
+	.views-row:hover .field-name-field-quote { opacity: 1; }
+
+	.field-name-field-thumbnail {
+		text-align: center;
+
+		.field-item {
+			position: relative;
+			display: inline-block;
+			overflow: hidden;
+			padding: 1px 1px 10px 1px;
+
+			&:after,
+			&::after {
+				background-image: url(/sites/all/themes/custom/pps/images/speech_balloon.png);
+				background-repeat: no-repeat;
+				background-size: 146px 155px;
+				bottom: 0;
+				content: ' ';
+				left: 1px;
+				opacity: 0;
+				padding: 1.5em;
+				pointer-events: none;
+				position: absolute;
+				right: 0;
+				top: 0;
+
+				@include transition(opacity, 0.2s, ease-out, 0);
+			}
+		}
+
+		img {
+			width: 146px;
+			height: 146px;
+			border-radius: 50%;
+		}
+	}
+
+	.views-row:hover .field-name-field-thumbnail .field-item:after { opacity: 1; }
+
+	.field-name-fullname-link,
+	.field-name-field-fullname {
+		color: $text-blue;
+		font-size: 1.2em;
+		font-style: italic;
+		font-weight: 700;
+		text-align: center;
+		@include adelle;
+	}
+
+	.field-name-field-job-title {
+		color: $text-gray-light;
+		font-size: 0.8em;
+		font-weight: 400;
+		margin-top: 5px;
+		text-align: center;
+		@include adelle-sans;
+	}
+
+	div.owl-controls {
+		position: static;
+
+		div.owl-next,
+		div.owl-prev {
+			position: absolute;
+			top: 50%;
+			margin: -4.3em 0 0;
+			padding: 0;
+			border-radius: 0;
+			opacity: 1;
+			width: 40px;
+			height: 40px;
+		}
+
+		div.owl-next {
+			background: url(../images/carousel-next.png) center;
+			right: 0;
+		}
+		div.owl-prev {
+			background: url(../images/carousel-prev.png) center;
+			left: 0;
+		}
+	}
+}

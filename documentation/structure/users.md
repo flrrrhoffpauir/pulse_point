@@ -1,0 +1,3 @@
+### Users
+
+Users of the site can be managed by going to the main admin menu and selecting the "People" menu. This lists out all users who have access to the site. New users can be added by selecting "Add user". When creating a new user, be careful to assign the correct "Roles" as this sets what access they have to manage the site. Users may have additional information fields available such as first and last name. Optional fields will often become available after saving the user. 

@@ -1,0 +1,5 @@
+name = Misc PPS overrides
+package = Pulse Point Site
+core = 7.x
+
+dependencies[] = ds

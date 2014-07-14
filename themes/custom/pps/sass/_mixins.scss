@@ -1,0 +1,120 @@
+@mixin adelle {
+	font-family: adelle, sans, sans-serif;
+}
+
+@mixin adelle-sans {
+	font-family: adelle-sans, sans, sans-serif;
+}
+
+@mixin border-radius($tl, $tr, $br, $bl) {
+	-webkit-border-radius: $tl $tr $br $bl;
+	-moz-border-radius: $tl $tr $br $bl;
+	-o-border-radius: $tl $tr $br $bl;
+	border-radius: $tl $tr $br $bl;
+}
+
+@mixin button() {
+	background-color: $bg-green;
+	border: none;
+	color: white;
+	display: inline-block;
+	font-size: 0.9em;
+	font-weight: 700;
+	// line-height: 2.3em; // FF doesnt allow this, moved into vertical padding
+	text-transform: uppercase;
+	padding: 9px 25px;
+	@include adelle-sans;
+	@include border-radius(20px, 20px, 20px, 20px);
+	@include transition(all, .2s, ease-out, 0);
+
+	&:hover {
+		background-color: lighten($bg-green, 10%);
+		color: white;
+		@include transition(all, .2s, ease-out, 0);
+	}
+}
+
+@mixin transition($property, $duration, $ease, $delay) {
+	-webkit-transition: $property $duration $ease $delay;
+	-moz-transition: $property $duration $ease $delay;
+	-ms-transition: $property $duration $ease $delay;
+	-o-transition: $property $duration $ease $delay;
+	transition: $property $duration $ease $delay;
+}
+
+@mixin transform($value) {
+	-webkit-transform: $value;
+	-moz-transform: $value;
+	-ms-transform: $value;
+	-o-transform: $value;
+	transform: $value;
+}
+
+@mixin linear-gradient($fallback, $start, $stop) {
+	background-image: $fallback;
+	background-image: $fallback, -webkit-linear-gradient($start, $stop);
+	background-image: $fallback, -moz-linear-gradient($start, $stop);
+	background-image: $fallback, -ms-linear-gradient($start, $stop);
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#{ie-hex-str($start)}', endColorstr='#{ie-hex-str($stop)}');/*For IE7-8-9*/
+	background-image: $fallback, -o-linear-gradient($start, $stop);
+	background-image: $fallback, linear-gradient($start, $stop);
+}
+
+@mixin clearfix {
+	*zoom: 1; // ie 6/7
+
+	&:before,
+    &:after {
+        content: "";
+        display: table;
+    }
+    &:after {
+        clear: both;
+    }
+}
+
+@mixin arrow($color, $size, $dir: up) {
+	$on: ();
+	$off: ();
+
+	@if ($dir == up) {
+		$on: bottom;
+		$off: (left, right, top)
+	}
+	@if ($dir == down) {
+		$on: top;
+		$off: (left, right, bottom);
+	}
+	@if ($dir == left) {
+		$on: right;
+		$off: (left, top, bottom);
+	}
+	@if ($dir == right) {
+		$on: left;
+		$off: (top, right, bottom);
+	}
+
+	width: 0;
+	height: 0;
+	@each $side in $on {
+		border-#{$side}: $size solid $color;
+	}
+	@each $side in $off {
+		border-#{$side}: $size solid transparent;	
+	}
+}
+
+@mixin bp($size, $dir: max) {
+	@if $size == small {
+		@media screen and (#{$dir}-width: 480px) { @content; }
+	}
+	@else if $size == medium {
+		@media screen and (#{$dir}-width: 767px) { @content; }
+	}
+	@else if $size == large {
+		@media screen and (#{$dir}-width: 1024px) { @content; }
+	}
+	@else if $size == huge {
+		@media screen and (min-width: 1400px) { @content; }
+	}
+}

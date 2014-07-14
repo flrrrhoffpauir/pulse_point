@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Recent Accelerator Articles feature.
+ */
+
+include_once 'pps_recent_accelerator_articles.features.inc';

@@ -1,0 +1,108 @@
+<?php
+
+/**
+ * @implements hook_menu
+ */
+function training_menu(){
+	$menus = array();
+	$menus['admin/support'] = array(
+		'title' => t('Trainging Resources'),
+		'page callback' => 'training_page',
+		'access callback' => 'user_access',
+		'access arguments' => array('access training resources'),
+	);
+
+	return $menus;
+}
+
+function training_permission() {
+	return array(
+		'access training resources' => array(
+			'title' => t('Access training resources'),
+		)
+	);
+}
+
+function training_page() {
+	$variables = array(
+		'contact' => '',
+		'email' => '',
+		'phone' => '',
+		'message' => '',
+		'videos' => array(),
+		'links' => array(),
+	);
+	foreach(module_implements('training_resources') as $module) {
+		$function = $module .'_training_resources';
+		$function($variables);
+	}
+
+	$content = array();
+
+	$content['contact'] = array(
+		'#prefix' => '<div class="contact">',
+		'#suffix' => '</div>',
+	);
+
+	if ($variables['message']) {
+		$content['message'] = array(
+			'#type' => 'markup',
+			'#markup' => $variables['message'],
+			'#prefix' => '<p>',
+			'#suffix' => '</p>',
+		);
+	}
+
+	if ($variables['contact']) {
+		$content['contact']['person'] = array(
+			'#type' => 'markup',
+			'#markup' => 'Support Contact: '. $variables['contact'],
+			'#prefix' => '<strong>',
+			'#suffix' => '</strong><br/>',
+		);
+	}
+
+	if ($variables['phone']) {
+		$content['contact']['phone'] = array(
+			'#type' => 'markup',
+			'#markup' => "phone: {$variables['phone']}",
+			'#suffix' => '<br/>',
+		);
+	}
+
+	if ($variables['email']) {
+		$content['contact']['email'] = array(
+			'#type' => 'markup',
+			'#markup' => "email: <a href=\"{$variables['email']}\">{$variables['email']}</a>",
+			'#suffix' => '<br/>',
+		);
+	}
+
+	if (count($variables['videos'])) {
+		$content['videos'] = array(
+			'#theme' => 'links',
+			'#heading' => t('Videos'),
+			'#type' => 'ul',
+			'#links' => array(),
+		);
+
+		foreach ($variables['videos'] as $video) {
+			$content['videos']['#links'][] = array(
+				'title' => $video['title'],
+				'href' => $video['link'],
+				'attributes' => array(
+					'target' => '_blank',
+				),
+			);
+		}
+	}
+
+	return $content;
+}
+
+/**
+ * @implements hook_training_resources
+ */
+function training_training_resources(&$vars) {
+
+}

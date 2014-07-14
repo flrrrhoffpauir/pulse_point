@@ -1,0 +1,4 @@
+#admin-menu { // fixes from global styles
+	.dropdown { display: block !important; } // yes, this is dirty, but JS is applying an inline style
+	ul { font-size: 1em; }
+}

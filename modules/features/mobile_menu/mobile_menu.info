@@ -1,0 +1,10 @@
+name = Mobile Menu
+description = Block configuration for mobile menu
+core = 7.x
+package = Pulse Point Site
+version = 7.x-1.0
+project = mobile_menu
+dependencies[] = fe_block
+dependencies[] = menu_block
+features[fe_block_settings][] = menu_block-6
+features[features_api][] = api:2

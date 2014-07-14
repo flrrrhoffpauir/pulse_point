@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Blog Author Info View feature.
+ */
+
+include_once 'blog_author_info_view.features.inc';

@@ -1,0 +1,163 @@
+@import "variables";
+@import "mixins";
+
+.view-home-page-carousel.owl-carousel {
+	display: block;
+
+	img {
+		width: 100%;
+	}
+
+	.views-row { position: relative; }
+	.no-js & .views-row {
+		display: none;
+		&:first-child { display: block; }
+	}
+	
+	.field-name-field-mobile-image {
+		display: none;
+		img { width: 100%; }
+	}
+
+	@include bp(medium) {
+		.field-name-field-mobile-image { display: block; }
+		.field-name-field-slide-image { display: none; }
+	}
+
+	.owl-theme .owl-controls {
+		position: static;
+
+		.owl-pagination {
+			position: absolute;
+			bottom: -10px;
+			left: 0;
+			right: 0;
+		}
+
+		div.owl-next,
+		div.owl-prev {
+			position: absolute;
+			top: 50%;
+			margin: -2em 0 0;
+			padding: 0;
+			border-radius: 0;
+			opacity: 1;
+			width: 14px;
+			height: 28px;
+			background-size: 12px 24px !important; // owl-theme conflict
+
+			@include bp(medium) { top: 58%; }
+			@include bp(small) { top: 67%; }
+		}
+
+		div.owl-next {
+			background: url(../images/carousel-arrow-right.png) center no-repeat;
+			right: 1em;
+		}
+		div.owl-prev {
+			background: url(../images/carousel-arrow-left.png) center no-repeat;
+			left: 1em;
+		}
+	}
+}
+
+.owl-item {
+	position: relative; // needed for text content to us it as positioning parent
+	-webkit-tap-highlight-color: rgba(0,0,0,0); 
+
+	h2 {
+		margin: 0;
+		font-size: 4em;
+		line-height: 0.9em;
+		letter-spacing: -0.05em;
+		@include adelle-sans;
+	}
+
+	.field-name-field-subtitle {
+		line-height: 1em;
+		font-size: 1.2em;
+		font-style: italic;
+		@include adelle;
+	}
+
+	// added media queries to replace fittext
+	// see js.js line 19
+	@include bp(medium) { 
+		h2 { 
+			font-size: 3em;
+			min-height: 3em;
+			margin-bottom: 1em; 
+		}
+		.field-name-field-subtitle { 
+			font-size: 1.0em;
+			margin-top: -1.75em;
+		}
+	}
+	@include bp(small) {
+		h2 { font-size: 2em; }
+		.field-name-field-subtitle { font-size: 1.0em; }
+	}
+}
+
+.owl-item-textContainer {
+	position: absolute;
+	left: 3%;
+	right: 1.5%;
+	top: 20px;
+	bottom: 40px;
+	opacity: 0;
+	transition: opacity 0.2s ease 0.8s; // delay should match slideSpeed in js.js
+	z-index: 10;
+
+	> div {
+		position: relative;
+		height: 100%;
+		max-width: 68.75em;
+		margin: 0 auto;
+		color: $text-gray;
+		word-wrap: break-word;
+		font-weight: 100;
+	}
+
+	> div > div {
+		position: absolute;
+		top: 50%;
+		left: 0;
+		width: 55%;
+
+		@include transform(translate(0, -50%));
+	}
+
+	@include bp(medium) {
+		position: static;
+
+		> div {
+			position: static;
+			width: 100%;
+			padding: 1em 1.5%;
+		}
+
+		> div > div {
+			position: static;
+			width: 100%;
+			@include transform(translate(0, 0));
+		}
+	}
+
+	.owl-item.active & { opacity: 1; }
+	.no-js & { opacity: 1; }
+
+	h2 { color: inherit; }
+	a { 
+		color: inherit; 
+		display: block;
+	}
+	p { margin: 0; }
+
+	.slideStyle-light & > div { color: $text-gray; }
+	.slideStyle-dark & > div { color: white; }
+
+	@include bp(medium) {
+		.slideStyle-dark & > div { color: $text-gray; }
+	}
+}

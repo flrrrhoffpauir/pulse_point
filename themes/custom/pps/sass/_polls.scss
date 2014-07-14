@@ -1,0 +1,99 @@
+@import "variables";
+@import "mixins";
+
+.poll {
+	border-bottom: 1px solid $divider-gray-light;
+	border-top: 1px solid $divider-gray-light;
+	margin-top: 1em;
+	padding-bottom: 1em;
+
+	.pollContainer {
+		position: relative;
+		clear: both;
+		margin: 0.5em 0;
+
+		@include clearfix();
+	}
+
+	.text {
+		font-size: 1.15em;
+		font-weight: 400;
+		line-height: 1em;
+		margin: 0 0 0.25em;
+		color: $text-gray-light;
+		@include adelle;
+	}
+	.barContainer {
+		clear: both;
+		float: left;
+		overflow: hidden;
+		@include border-radius(50px, 50px, 50px, 50px);
+	}
+	.bar {
+		margin: 0;
+		height: 3em;
+		width: 100%;
+		border-radius: 24px;
+
+		background-attachment: scroll;
+		background-size: auto;
+		background-position: 0% 0%;
+		background-repeat: repeat repeat;
+
+	}
+	.percent {
+		float: left;
+		padding: 0 0 0 0.5em;
+		text-align: center;
+
+		font-size: 1.75em;
+		font-weight: 400;
+		line-height: 1.65em;
+		word-wrap: break-word;
+		@include adelle;
+	}
+	.total {
+		clear: both;
+	}
+
+	.vote-form {
+		text-align: left;
+
+		.choices {
+			margin: 0 0 0 1px;
+		}
+
+		.form-item {
+			margin-bottom: 1.25em;
+		}
+
+		.form-radio {
+			margin-top: -5px;
+		}
+
+		label {
+			font-size: 1.15em;
+			line-height: 1em;
+			margin-left: 1em;
+		}
+	}
+
+	// colour theme
+	$alpha: 0.701961;
+	.pollContainer:nth-child(4n-3) {
+		.percent { color: $text-gray-light; }
+		.bar { @include linear-gradient(url("../images/lines-medium-gray.png"), rgba($bg-gray-light2, $alpha), $bg-gray-light2); }
+	}
+	.pollContainer:nth-child(4n-2) {
+		.percent { color: $text-teal; }
+		.bar { @include linear-gradient(url("../images/lines-teal.png"), rgba($bg-teal, $alpha), $bg-teal); }
+	}
+	.pollContainer:nth-child(4n-1) {
+		.percent { color: $text-gray; }
+		.bar { @include linear-gradient(url("../images/lines-dark-gray.png"), rgba($bg-gray, $alpha), $bg-gray); }
+	}
+	.pollContainer:nth-child(4n-0) {
+		.percent { color: $text-copper; }
+		.bar { @include linear-gradient(url("../images/lines-copper.png"), rgba($bg-copper, $alpha), $bg-copper); }
+	}
+}

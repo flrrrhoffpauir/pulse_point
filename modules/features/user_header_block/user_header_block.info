@@ -1,0 +1,11 @@
+name = User Header Block
+core = 7.x
+package = Pulse Point Site
+version = 7.x-1.0
+project = user_header_block
+dependencies[] = ds
+dependencies[] = views
+features[ctools][] = views:views_default:3.0
+features[features_api][] = api:2
+features[views_view][] = author_header
+features_exclude[dependencies][ctools] = ctools

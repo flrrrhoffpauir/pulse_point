@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Contact Us Content Types and Views feature.
+ */
+
+include_once 'contact_us_content_types_and_views.features.inc';

@@ -1,0 +1,9 @@
+name = Accelerator Videos Block
+core = 7.x
+package = Pulse Point Site
+version = 7.x-1.0
+project = accelerator_videos_block
+dependencies[] = fe_block
+features[fe_block_settings][] = block-accelerator_videos
+features[features_api][] = api:2
+features_exclude[fe_block_boxes][accelerator_videos] = accelerator_videos

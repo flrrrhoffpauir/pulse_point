@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Blog Index View feature.
+ */
+
+include_once 'blog_index_view.features.inc';

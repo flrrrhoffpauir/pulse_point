@@ -1,0 +1,143 @@
+@import "variables";
+@import "mixins";
+
+blockquote {
+	font-size : 1.25em;
+	color : $link-red;
+
+	p { font-size: 1em; }
+}
+
+// headers
+.page-title {
+	color: $text-gray-light;
+	border-bottom: 1px solid $divider-gray-light;
+	font-size: 1.625em;
+	font-weight: 100;
+	margin: 0 0 10px;
+	@include adelle-sans;
+
+	float: left;
+	border: none;
+	margin-right: 1em;
+}
+
+.content-title {
+	color: $text-gray;
+	font-size: 4em;
+	font-weight: 100;
+	letter-spacing: -0.05em;
+	margin: 30px 0 0 0;
+	padding: 0;
+	@include adelle-sans;
+
+	&.margin-bottom {
+		margin-bottom: 30px;
+	}
+
+	&.small {
+		font-size: 2em;
+	}
+
+	@include bp(medium) {
+		font-size: 2.5em;
+	}
+}
+
+.list-title {
+	color: $bg-gray;
+	font-size: 1.5em;
+	font-style: italic;
+	font-weight: 100;
+	margin: 0;
+	padding: 0;
+	@include adelle-sans;
+}
+
+.accordion-title {
+	color: $link-blue;
+	font-size: 2em;
+	font-style: italic;
+	font-weight: 100;
+	margin: 0;
+	padding: 0 37px 0 0; // magic number for phones
+
+	&:hover {
+		color: $link-red;
+	}
+}
+
+.block-title {
+	color: $text-gray;
+	font-size: 2em;
+	font-style: italic;
+	font-weight: 100;
+	line-height: 1em;
+	margin: 30px 0
+}
+
+.teaser-title {
+	color: $link-blue;
+	font-size: 1.5em;
+	font-weight: normal;
+	margin: 0;
+	padding: 0;
+}
+
+// text
+.highlighted {
+	color: $link-red;
+	font-size: 0.9em;
+	line-height: 32px;
+	font-weight: 700;
+	text-transform: uppercase;
+	@include adelle-sans;
+
+	a { color: inherit; }
+}
+
+.featured-text {
+	color: $text-gray;
+	font-size: 1.5em;
+	line-height: 1.4em;
+	margin-bottom: 1em;
+	margin-top: 0;
+	text-align: left;
+
+	p {
+		font-size: 1em;
+		text-align: left;
+
+		&:first-child {
+			margin-top: 0;
+		}
+	}
+}
+
+// lists
+.content-list {
+	margin: 30px 0 0 0;
+	padding: 0;
+	list-style: none;
+	overflow: hidden; // clearfix;
+
+	li {
+		background: url(../images/content-list-bullet.png) left top no-repeat;
+		background-position: 0 5px;
+		background-size: 22px;
+		float: left;
+		padding-left: 40px;
+		width: 50%;
+
+		@media screen and (max-width: 730px) {
+			width: 100%;
+		}
+	}
+
+	p {
+		margin-bottom: 30px;
+		margin-top: 5px;
+	}
+
+	li:nth-child(odd) { clear: left; }
+}

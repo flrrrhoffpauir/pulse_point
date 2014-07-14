@@ -1,0 +1,33 @@
+@import "variables";
+@import "mixins";
+
+.view-clients {
+	margin: 1em 0;
+
+	.columns {
+
+		margin-bottom: 2em;
+		text-align: center;
+	}
+
+	.columns:last-child {
+		float: left;
+	}
+
+	.columns img {
+		padding: 1em;
+
+	}
+
+	a {
+		display: block;
+		box-sizing: border-box;
+		border: 1px solid $divider-gray-light;
+		@include transition(all, .2s, ease-out, .5s);
+
+		&:hover {
+			border: 1px solid $link-red;
+			@include transition(all, .2s, ease-out, 0);
+		}
+	}
+}

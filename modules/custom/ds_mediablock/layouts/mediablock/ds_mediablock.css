@@ -1,0 +1,23 @@
+.ds-mediablock {
+	/* margin-bottom: 1em; */
+	margin-bottom: 0;
+}
+
+.ds-mediablock-body {
+	overflow: hidden;
+}
+
+.ds-mediablock-mediaContainer {
+	float: left;
+	margin-right: 30px;
+}
+
+.ds-mediablock-contentContainer {
+	overflow: hidden;
+}
+
+@media screen and (max-width: 768px) {
+	.ds-mediablock-mediaContainer {
+		float: none;
+	}
+}
